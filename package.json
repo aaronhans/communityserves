@@ -1,0 +1,26 @@
+{
+  "name": "communityserves",
+  "version": "1.0.0",
+  "description": "communityserves.community",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "cd docs && ws"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaronhans/communityserves.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aaronhans/communityserves/issues"
+  },
+  "homepage": "https://github.com/aaronhans/communityserves#readme",
+  "devDependencies": {
+    "local-web-server": "^4.2.0"
+  }
+}

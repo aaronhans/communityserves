@@ -1,8 +1,28 @@
 <!doctype html>
 <html>
+  <head>
+    <title>Community serves community</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css' rel='stylesheet' />
+    <link href='page.css' rel='stylesheet' />
+    
+  </head>
   <body>
 
-    Hello World
     
+<div id="main-map" class="themap"></div>
+
+
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWFyb25oYW5zIiwiYSI6ImNrYjVrc3hvaTBkMW4zMW1wbXU4emlhaHgifQ.3Zpqx654l58G4Fl_IdcXLA';
+var map = new mapboxgl.Map({
+  container: 'main-map',
+  style: 'mapbox://styles/mapbox/dark-v9',
+  center: [-122.269326, 37.808404],
+  zoom: 13
+});
+</script>
+
   </body>
   </html>
