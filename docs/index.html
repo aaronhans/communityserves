@@ -2,27 +2,59 @@
 <html>
   <head>
     <title>Community serves community</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css' rel='stylesheet' />
     <link href='page.css' rel='stylesheet' />
     
   </head>
   <body>
-
     
-<div id="main-map" class="themap"></div>
+    <section id="main-map" class="themap"></section>
+    <main>
+      <section id="main-view">
+        <h2>Recent Posts</h2>
+        <div class="requests"></div>
+      </section>
 
+    </main>
+    <footer>
+      <a class="request-cta"><h1>Submit Request</h1></a>
+      <div class="footer-content">A community funded project to support historically red-lined black & brown cities in direct action through service &amp; art.</div>
+    </footer>
 
-
-<script src='https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
-<script>
-mapboxgl.accessToken = 'pk.eyJ1IjoiYWFyb25oYW5zIiwiYSI6ImNrYjVrc3hvaTBkMW4zMW1wbXU4emlhaHgifQ.3Zpqx654l58G4Fl_IdcXLA';
-var map = new mapboxgl.Map({
-  container: 'main-map',
-  style: 'mapbox://styles/mapbox/dark-v9',
-  center: [-122.269326, 37.808404],
-  zoom: 13
-});
-</script>
+    <!-- modals -->
+    <div id="request-type" class="dialog">
+      <div class="dialog-content">
+        <div class="close"></div>
+          <a>Clean Up</a>
+          <hr/>
+          <a>Art Install</a>
+      </div>
+    </div>
+    
+    <!-- templates -->
+    <template class="location-card-template">
+      <div class="location-card">
+        <div class="location-img"></div>
+        <div class="location-details">
+          <div class="location-name">Business Name</div>
+          <div class="create-date">DD:MM HH:MM</div>
+          <a class="more-details">See Details</a>
+        </div>
+        <div class="location-cta"></div>
+      </div>
+    </template>
+    <script src='index.js'></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoiYWFyb25oYW5zIiwiYSI6ImNrYjVrc3hvaTBkMW4zMW1wbXU4emlhaHgifQ.3Zpqx654l58G4Fl_IdcXLA';
+      var map = new mapboxgl.Map({
+        container: 'main-map',
+        style: 'mapbox://styles/mapbox/dark-v9',
+        center: [-122.269326, 37.808404],
+        zoom: 13
+      });
+    </script>
 
   </body>
-  </html>
+</html>

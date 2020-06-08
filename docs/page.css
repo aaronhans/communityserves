@@ -1,7 +1,129 @@
 body {
+  width: 100%;
   margin: 0;
+  font-family: Roboto Mono;
+  font-style: normal;
+  height: 100vh;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 .themap {
   width: 100%; 
   height: 300px;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 33px;
+}
+
+a {
+  color: #09C8F2;
+}
+
+main {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5em;
+}
+
+
+/* location cards */
+.location-card {
+  margin-bottom: 1em;
+  border: 1px solid #6209F2;
+  border-radius: 2px;
+  display: flex;
+}
+
+.location-card .location-img{
+  background: grey;
+  width: 50px;
+}
+
+.location-card .location-details{
+  padding: 0.5em;
+  flex: 1;
+}
+
+/* .location-card .location-cta{
+
+} */
+
+.request-cta {
+  font-weight: bold;
+  background: white;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+}
+
+#request-type a {
+  display: inline-block;
+  text-transform: uppercase;
+  padding: 1.5em;
+}
+
+/* dialogs */
+.dialog {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.dialog.open {
+  display: flex;
+}
+
+.dialog .dialog-content {
+  max-width: 90%;
+  background: white;
+  padding: 1em;
+  position: relative;
+  border-radius: 2px;
+}
+
+.dialog .dialog-content .close {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border-radius: 50%;
+  background: black;
+  width: 1.5em;
+  height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(50%, -50%);
+}
+
+.dialog .dialog-content .close::before {
+  content: 'x';
+  color: #fff;
+  font-weight: 300;
+  font-family: Arial, sans-serif;
+}
+/* footer */
+footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.footer-content {
+  background: black;
+  color: white;
+  padding: 0.5em;
+  font-size: 10px;
 }
