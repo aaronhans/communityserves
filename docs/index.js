@@ -25,6 +25,8 @@ function hideModal(element) {
     element.classList.remove('open');
 }
 
+// temporary goofy map sizing, feel free to delete this and size the map a better way
+document.getElementById('main-map').style.height = (window.innerHeight - 175)+'px';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWFyb25oYW5zIiwiYSI6ImNrYjVrc3hvaTBkMW4zMW1wbXU4emlhaHgifQ.3Zpqx654l58G4Fl_IdcXLA';
 var map = new mapboxgl.Map({
@@ -47,9 +49,10 @@ fetch('art-requests.json')
       // make a marker for each feature and add to the map
       new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
+        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+          .setHTML(`<h3>Art request</h3><p>${marker.properties.title}</p><p>${marker.properties.address}</p>`))
         .addTo(map);
     });
 
 });
-
 
