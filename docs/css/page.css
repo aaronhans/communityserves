@@ -101,10 +101,12 @@ main {
 
 .request-cleanup-cta {
   color: #6209F2;
+  text-decoration: none;
 }
 
 .request-art-cta {
   color: #9C08B5;
+  text-decoration: none;
 }
 
 /* dialogs */
