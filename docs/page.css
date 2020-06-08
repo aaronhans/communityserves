@@ -23,6 +23,7 @@ h1 {
 
 a {
   color: #09C8F2;
+  cursor: pointer;
 }
 
 main {
@@ -106,6 +107,7 @@ main {
   align-items: center;
   justify-content: center;
   transform: translate(50%, -50%);
+  border: 1px solid white;
 }
 
 .dialog .dialog-content .close::before {
@@ -126,6 +128,7 @@ footer {
   color: white;
   padding: 0.5em;
   font-size: 10px;
+}
 .art-request-marker {
   background-image: url('img/paint-brush-fill.svg');
   background-size: cover;
