@@ -29,6 +29,10 @@ h1 {
   line-height: 1.75em;
 }
 
+h4, h5 {
+  margin: 1.5em 0 0;
+}
+
 a {
   color: #09C8F2;
   cursor: pointer;
@@ -77,6 +81,11 @@ p {
 .request-art-cta {
   color: #9C08B5;
   text-decoration: none;
+}
+
+.volunteers a {
+  text-decoration: underline;
+  line-height: 2em;
 }
 
 /* Tab sections */
@@ -155,6 +164,7 @@ p {
   background-color: rgba(0,0,0,0.5);
   align-items: center;
   justify-content: center;
+  z-index:3;
 }
 
 .dialog.open {
@@ -198,11 +208,23 @@ footer {
   right: 0;
   bottom: 0;
 }
+
 .footer-content {
   background: black;
   color: white;
   padding: 0.5em;
   font-size: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.footer-content .footer-links {
+  padding-left: 1em;
+}
+
+.footer-content a{
+  color: white;
+  text-decoration: underline;
 }
 
 /* Map */

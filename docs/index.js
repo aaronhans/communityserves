@@ -1,7 +1,9 @@
 var cleanupRequestsDiv = document.getElementsByClassName('cleanup-requests')[0];
 var locationCardTemplate = document.getElementsByClassName('location-card-template')[0];
 var requestCTA = document.getElementsByClassName('request-cta')[0];
-var requestDialog =  document.getElementById('request-type');
+var requestDialog = document.getElementById('request-type');
+var aboutLink =  document.getElementsByClassName('about-link')[0];
+var aboutDialog = document.getElementById('about');
 
 for (var i = 0 ; i < 5 ; i++){
     cleanupRequestsDiv.appendChild(locationCardTemplate.content.cloneNode(true));
@@ -9,6 +11,10 @@ for (var i = 0 ; i < 5 ; i++){
 
 requestCTA.addEventListener("click", function(ev){
     showModal(requestDialog);
+});
+
+aboutLink.addEventListener("click", function(ev){
+    showModal(aboutDialog);
 });
 
 document.querySelectorAll('.dialog').forEach(function(item) {

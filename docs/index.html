@@ -40,7 +40,10 @@
     </main>
     <footer>
       <a class="request-cta"><h1>Request Community Help</h1></a>
-      <div class="footer-content">A community funded project to support historically red-lined black & brown cities in direct action through service &amp; art.</div>
+      <div class="footer-content">
+        <div>A community funded project to support historically red-lined black & brown cities in direct action through service &amp; art.</div>
+        <div class="footer-links"><a class="about-link">About</a></div>
+      </div>
     </footer>
 
     <!-- modals -->
@@ -52,6 +55,27 @@
           <a class="request-art-cta" href="https://forms.gle/VKyexQDKkciK2At59" target="_blank"><i class="icon-paint-brush-fill"></i>Art Install</a>
       </div>
     </div>
+
+    <div id="about" class="dialog">
+        <div class="dialog-content">
+          <div class="close"></div>
+          <h2>About CommunityServe</h2>
+          <p>CommunityServe was created by <a href="https://www.instagram.com/the_hyphy_kid/">Aireon Taverres</a>, and built by <a>Oakland Neighbors</a> in solidarity with #BLM and the George Floyd protests.</p>
+          <p><strong>There is work to be done. <a>Join Us.</a></strong></p>
+          <h4>Highlighted Contributors</h4>
+          <p><a href="https://www.instagram.com/the_hyphy_kid/">Aireon Taverres</a><br>Organizer, Born 11/28/92 in Las Vegas, NV</p>
+          <p><a>Henri Battiste</a><br>Sr. Researcher, Born XX/XX/XX in XXXX, CA</p>
+          <p><a>David Gil</a><br>Developer, Born XX/XX/XX in XXXX, CA</p>
+          <p><a>Renee Gallison</a><br>Developer, Born XX/XX/XX in XXXX, Hawaii</p>
+          <h5>Volunteers</h5>
+          <p class="volunteers">
+            <a>Jonathan Delong</a><br>
+            <a>Michele Weiner</a><br>
+            <a>Aaron Hans</a><br>
+            <a>Eric Pettijohn</a><br>
+          </p>
+        </div>
+      </div>
     
     <!-- templates -->
     <template class="location-card-template">
@@ -70,6 +94,8 @@
         </div>
       </div>
     </template>
+
+    <!-- js -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
     <script src='index.js'></script>
   </body>
