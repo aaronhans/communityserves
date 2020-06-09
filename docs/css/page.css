@@ -15,22 +15,18 @@ body {
   box-sizing: border-box;
 }
 
-.themap {
-  width: 100%; 
-  height: 250px;
-}
-
+/* Element styling */
 hr {
   border-top: 1px solid #E5E5E5;
 }
 
 h1, h2, h3 {
   font-weight: bold;
-  line-height: 33px;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 1.5em;
+  line-height: 1.75em;
 }
 
 a {
@@ -41,10 +37,15 @@ a {
 main {
   max-width: 1200px;
   width: 100%;
-  margin: 0 auto;
-  padding: 0 1.5em;
+  margin: 0 auto 7em;
+  padding: 0 1.5em 1.5em;
 }
 
+p {
+  font-size: 0.75em;
+}
+
+/* Buttons & links */
 .primary-btn {
   background: #6209F2;
   color: white;
@@ -52,6 +53,65 @@ main {
   border-radius: 90px;
   padding: 0.5em 1em;
 }
+
+.request-cta {
+  font-weight: bold;
+  background: white;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.45);
+}
+
+#request-type a {
+  display: inline-block;
+  text-transform: uppercase;
+  padding: 1.5em;
+}
+
+.request-cleanup-cta {
+  color: #6209F2;
+  text-decoration: none;
+}
+
+.request-art-cta {
+  color: #9C08B5;
+  text-decoration: none;
+}
+
+/* Tab sections */
+.tab-section .tabs {
+  display: flex;
+}
+
+.tab-section .tabs .tab {
+  flex: 1;
+  font-size: 17px;
+  line-height: 20px;
+}
+
+.tab-section .tabs .tab.active span {
+  border-bottom: 2px solid;
+  display: inline-block;
+  padding-bottom: 0.5em;
+}
+
+.tab-section .tabs #tab1.active span {
+  border-color: #6209F2;
+}
+
+.tab-section .tabs #tab2.active span {
+  border-color: #9C08B5;
+}
+
+.tab-section .tab-content {
+  display: none;
+}
+
+.tab-section .tab-content.active {
+  display: block;
+}
+
 /* location cards */
 .location-card {
   margin-bottom: 1em;
@@ -82,31 +142,6 @@ main {
 
 .location-card .location-cta .serve-cta .sub {
   font-size: 0.5em;
-}
-
-.request-cta {
-  font-weight: bold;
-  background: white;
-  width: 100%;
-  text-align: center;
-  display: inline-block;
-  box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.45);
-}
-
-#request-type a {
-  display: inline-block;
-  text-transform: uppercase;
-  padding: 1.5em;
-}
-
-.request-cleanup-cta {
-  color: #6209F2;
-  text-decoration: none;
-}
-
-.request-art-cta {
-  color: #9C08B5;
-  text-decoration: none;
 }
 
 /* dialogs */
@@ -155,6 +190,7 @@ main {
   font-weight: 300;
   font-family: Arial, sans-serif;
 }
+
 /* footer */
 footer {
   position: fixed;
@@ -167,6 +203,12 @@ footer {
   color: white;
   padding: 0.5em;
   font-size: 10px;
+}
+
+/* Map */
+.themap {
+  width: 100%; 
+  height: 250px;
 }
 
 .art-request-marker {

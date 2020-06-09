@@ -1,10 +1,10 @@
-var requestsDiv = document.getElementsByClassName('requests')[0];
+var cleanupRequestsDiv = document.getElementsByClassName('cleanup-requests')[0];
 var locationCardTemplate = document.getElementsByClassName('location-card-template')[0];
 var requestCTA = document.getElementsByClassName('request-cta')[0];
 var requestDialog =  document.getElementById('request-type');
 
 for (var i = 0 ; i < 5 ; i++){
-    requestsDiv.appendChild(locationCardTemplate.content.cloneNode(true));
+    cleanupRequestsDiv.appendChild(locationCardTemplate.content.cloneNode(true));
 }
 
 requestCTA.addEventListener("click", function(ev){
@@ -24,6 +24,21 @@ function showModal(element) {
 function hideModal(element) {
     element.classList.remove('open');
 }
+
+document.querySelectorAll('.tab').forEach(function(item) {
+    item.addEventListener('click', function(event) {
+        document.querySelectorAll('.tab, .tab-content').forEach(function(i){ 
+            if(i.id.includes(event.currentTarget.id)) {
+                i.classList.add('active');
+            } else {
+                i.classList.remove('active'); 
+            }
+        });
+    });
+    if (item.classList.contains('active')) {
+        document.getElementById(item.id + '-content').classList.add('active');
+    }
+});
 
 // temporary goofy map sizing, feel free to delete this and size the map a better way
 document.getElementById('main-map').style.height = (window.innerHeight - 175)+'px';
