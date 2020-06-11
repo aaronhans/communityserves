@@ -41,6 +41,9 @@ a {
 main {
   max-width: 1200px;
   width: 100%;
+}
+
+section {
   margin: 0 auto 7em;
   padding: 0 1.5em 1.5em;
 }
@@ -58,7 +61,7 @@ p {
   padding: 0.5em 1em;
 }
 
-.request-cta {
+.request-help-cta {
   font-weight: bold;
   background: white;
   width: 100%;
@@ -121,35 +124,35 @@ p {
   display: block;
 }
 
-/* location cards */
-.location-card {
+/* request cards */
+.request-card {
   margin-bottom: 1em;
   border: 1px solid #6209F2;
   border-radius: 2px;
   display: flex;
 }
 
-.location-card .location-img{
+.request-card .request-img{
   background: grey;
   width: 50px;
 }
 
-.location-card .location-details{
+.request-card .request-details{
   padding: 0.5em;
   flex: 1;
 }
 
-.location-card .location-cta{
+.request-card .request-cta{
   padding: 0.5em;
   align-self: center;
 }
 
-.location-card .location-cta .serve-cta {
+.request-card .request-cta .serve-cta {
   font-size: 1em;
   line-height: 0.75em;
 }
 
-.location-card .location-cta .serve-cta .sub {
+.request-card .request-cta .serve-cta .sub {
   font-size: 0.5em;
 }
 
@@ -240,4 +243,9 @@ footer {
   height: 50px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+/* Generic helpers */
+.hide {
+  display: none;
 }

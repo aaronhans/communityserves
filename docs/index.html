@@ -15,11 +15,11 @@
   </head>
   <body>
     
-    <section id="main-map" class="themap"></section>
-    <main>
-      <section id="main-view">
+    <main id="main-view">
+      <div id="main-map" class="themap"></div>
+      <section>
         <h1>&darr; Recent Posts</h1>
-        <section class="tab-section">
+        <div class="tab-section">
           <div class="tabs">
             <div id="tab1" class="tab active"><span>Clean Ups</span></div>
             <div id="tab2" class="tab"><span>Art Requests</span></div>
@@ -34,12 +34,14 @@
                 <div class="cleanup-requests"></div>
               </div>
           </div>
-        </section>
+        </div>
       </section>
-
     </main>
+
+    <main id="request-detail-view" class="hide"></main>
+
     <footer>
-      <a class="request-cta"><h1>Request Community Help</h1></a>
+      <a class="request-help-cta"><h1>Request Community Help</h1></a>
       <div class="footer-content">
         <div>A community funded project to support historically red-lined black & brown cities in direct action through service &amp; art.</div>
         <div class="footer-links"><a class="about-link">About</a></div>
@@ -78,21 +80,45 @@
       </div>
     
     <!-- templates -->
-    <template class="location-card-template">
-      <div class="location-card">
-        <div class="location-img"></div>
-        <div class="location-details">
-          <div class="location-name">Business Name</div>
+    <template id="request-card-template">
+      <div class="request-card">
+        <div class="request-img"></div>
+        <div class="request-details">
+          <div class="request-name">Business Name</div>
           <div class="create-date">DD:MM &middot; HH:MM</div>
           <a class="more-details">See Details</a>
         </div>
-        <div class="location-cta">
+        <div class="request-cta">
           <button class="serve-cta primary-btn">
             Serve<br>
             <span class="sub"><span class="volunteer-count">None</span> have joined</span>
           </button>
         </div>
       </div>
+    </template>
+
+    <template id="request-detail-template">
+      <section>
+        <div class="request-imgs"></div>
+        <div class="request-details">
+          <div class="request-header">
+            <a click="back">Recent Requests</a>
+            <button class="serve-cta primary-btn">
+              Serve<br>
+              <span class="sub"><span class="volunteer-count">None</span> have joined</span>
+            </button>
+          </div>
+
+          <h2>Clean Up Request</h2>
+          <div class="business-details">
+              <div class="business-location"></div>
+              <div class="business">
+                  <div class="business-name"></div>
+                  <div class="business-address"></div>
+                </div>
+            </div>
+        </div>
+      </section>
     </template>
 
     <!-- js -->
