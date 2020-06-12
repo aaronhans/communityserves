@@ -8,17 +8,17 @@ var requestDialog = document.getElementById('request-type');
 var aboutLink =  document.getElementsByClassName('about-link')[0];
 var aboutDialog = document.getElementById('about');
 
-for (var i = 0 ; i < 5 ; i++){
-    var requestCardHTML = requestCardTemplate.content.cloneNode(true);
-    requestCardHTML.querySelector('button').addEventListener("click", function(){
-        mainView.classList.add('hide');
-        requestDetailView.classList.remove('hide');    
-        var requestDetailHTML = requestDetailsTemplate.content.cloneNode(true);
-        requestDetailHTML.querySelector('volunteer-count').text = requestCardHTML.querySelector('volunteer-count').text
-        requestDetailView.appendChild(requestDetailHTML);
-    });
-    cleanupRequestsDiv.appendChild(requestCardHTML);
-}
+// for (var i = 0 ; i < 5 ; i++){
+//     var requestCardHTML = requestCardTemplate.content.cloneNode(true);
+//     requestCardHTML.querySelector('button').addEventListener("click", function(){
+//         mainView.classList.add('hide');
+//         requestDetailView.classList.remove('hide');    
+//         var requestDetailHTML = requestDetailsTemplate.content.cloneNode(true);
+//         requestDetailHTML.querySelector('volunteer-count').text = requestCardHTML.querySelector('volunteer-count').text
+//         requestDetailView.appendChild(requestDetailHTML);
+//     });
+//     cleanupRequestsDiv.appendChild(requestCardHTML);
+// }
 
 requestCTA.addEventListener("click", function(ev){
     showModal(requestDialog);
