@@ -9,6 +9,7 @@ body {
   font-style: normal;
   min-height: -webkit-fill-available;
   font-size: 1em;
+  background: #E5E5E5;
 }
 
 * {
@@ -40,6 +41,8 @@ a {
 
 main {
   max-width: 1200px;
+  margin: 0 auto;
+  background: white;
   width: 100%;
 }
 
