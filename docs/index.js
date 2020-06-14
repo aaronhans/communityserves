@@ -14,7 +14,7 @@ let mainView = document.getElementById('main-view'),
 //         mainView.classList.add('hide');
 //         requestDetailView.classList.remove('hide');    
 //         var requestDetailHTML = requestDetailsTemplate.content.cloneNode(true);
-//         requestDetailHTML.querySelector('volunteer-count').text = requestCardHTML.querySelector('volunteer-count').text
+//         requestDetailHTML.querySelector('.volunteer-count').text = requestCardHTML.querySelector('volunteer-count').text
 //         requestDetailView.appendChild(requestDetailHTML);
 //     });
 //     cleanupRequestsDiv.appendChild(requestCardHTML);
@@ -63,7 +63,7 @@ var map = new mapboxgl.Map({
   zoom: 13
 });
 
-fetch('art-requests.json')
+fetch('data/art-requests.json')
   .then(response => response.json())
   .then(geojson => {
     // add markers to map
