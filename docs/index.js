@@ -1,12 +1,12 @@
-var mainView = document.getElementById('main-view');
-var requestDetailView = document.getElementById('request-detail-view');
-var cleanupRequestsDiv = document.getElementsByClassName('cleanup-requests')[0];
-var requestCardTemplate = document.getElementById('request-card-template');
-var requestDetailsTemplate = document.getElementById('request-detail-template');
-var requestCTA = document.getElementsByClassName('request-help-cta')[0];
-var requestDialog = document.getElementById('request-type');
-var aboutLink =  document.getElementsByClassName('about-link')[0];
-var aboutDialog = document.getElementById('about');
+let mainView = document.getElementById('main-view'),
+    requestDetailView = document.getElementById('request-detail-view'),
+    cleanupRequestsDiv = document.getElementsByClassName('cleanup-requests')[0],
+    requestCardTemplate = document.getElementById('request-card-template'),
+    requestDetailsTemplate = document.getElementById('request-detail-template'),
+    requestCTA = document.getElementsByClassName('request-help-cta')[0],
+    requestDialog = document.getElementById('request-type'),
+    aboutLink =  document.getElementsByClassName('about-link')[0],
+    aboutDialog = document.getElementById('about');
 
 // for (var i = 0 ; i < 5 ; i++){
 //     var requestCardHTML = requestCardTemplate.content.cloneNode(true);
