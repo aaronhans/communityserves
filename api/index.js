@@ -1,12 +1,4 @@
-// retrieve data from 
-const fetch = require('node-fetch');
-// art request: https://docs.google.com/spreadsheets/d/e/2PACX-1vTRun2moHUzxeAr4GjxtT9ONvGdjUyFqgR9NJHul3PXAJnteumrigM0p1rMJR7V6prl4mkTUaXiqhHm/pub?gid=1508614744&single=true&output=csv
-fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTRun2moHUzxeAr4GjxtT9ONvGdjUyFqgR9NJHul3PXAJnteumrigM0p1rMJR7V6prl4mkTUaXiqhHm/pub?gid=1508614744&single=true&output=csv')
-  .then(response => response.text())
-  .then(data => console.log(data));
-
-
-// save it to github
+const csv=require('csvtojson');
 const fetch = require('node-fetch');
 function authheader() {
   return {
@@ -126,17 +118,74 @@ const authHeader = {
 };
 const defaultoptions = () => ({ method: "GET", headers: authHeader });
 
-module.exports = async function addToGithub(
-  newFile,
-  githubBranch,
-  githubApiUrl,
-  fileLocation
-) {
+module.exports = async function addToGithub() {
+
+  // art request: https://docs.google.com/spreadsheets/d/e/2PACX-1vTRun2moHUzxeAr4GjxtT9ONvGdjUyFqgR9NJHul3PXAJnteumrigM0p1rMJR7V6prl4mkTUaXiqhHm/pub?gid=1508614744&single=true&output=csv
+  let newFile;
+  await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTRun2moHUzxeAr4GjxtT9ONvGdjUyFqgR9NJHul3PXAJnteumrigM0p1rMJR7V6prl4mkTUaXiqhHm/pub?gid=1508614744&single=true&output=csv')
+    .then(response => response.text())
+    .then(async data => {
+
+      // Async / await usage
+      let returnedData = await csv().fromString(data);
+
+      let newJSON = {
+        "type": "FeatureCollection",
+        "features": []
+      }
+
+      returnedData.forEach(item => {
+        let feature = {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [-122.274688, 37.797367]
+          },
+          "properties": {
+            "title": "Art Request",
+            "address": item["Street Address of Location"]
+          }
+        }
+        newJSON.features.push(feature);
+      })
+      
+      /*
+        {
+          Timestamp: "6/7/2020 14:17:42",
+          Please upload photos of the exterior space you'd like painted.: "https://drive.google.com/open?id=1Bv_vSIhdnY6LIaMSAOpVtbj0UbfCssFh",
+          Are you submitting this request on behalf of a Business or Landlord?: "No",
+          Email: "",
+          Permission to put murals up is determined entirely by the landholder of the property being submitted: {
+          Are you the landholder of this property?: "Yes"
+          },
+          Contact Name: "Aaron Hans",
+          Phone Number: "92599899425",
+          Email Address: "aaronhans@gmail.com",
+          Street Address of Location: "400 Broadway",
+          What city are you in?: "",
+          Request New City: "",
+          Verified Business?: "",
+        }
+      */
+      
+      console.log(newJSON)
+      let newFile = JSON.stringify(newJSON)
+      console.log(newFile)
+  
+      // retrieved csv
+      // need to turn it into geojson
+    });
+
+  let githubBranch = "master";
+  let githubApiUrl = "https://api.github.com/repos/aaronhans/communityserves/";
+  let fileLocation = 'docs/art-requests-test.json';
+
   const newURL = `${githubApiUrl}${githubApiContents}${fileLocation}?ref=${githubBranch}`;
+  console.log(newURL)
 
   const existingFileResponse = await fetch(newURL, defaultoptions());
 
-  if (existingFileResponse.ok) {
+  // if (existingFileResponse.ok) {
     //update
     const json = await existingFileResponse.json();
 
@@ -171,9 +220,10 @@ module.exports = async function addToGithub(
         console.log(`ADD Success: ${newFilePath}`);
       })
       .catch(async (res) => {
+        console.log(res)
         console.log('fail')
       });
-  } else {
+  /*} else {
     console.log('fail')
-  }
+  }*/
 };
