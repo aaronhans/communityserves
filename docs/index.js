@@ -8,28 +8,23 @@ let mainView = document.getElementById('main-view'),
     aboutLink =  document.getElementsByClassName('about-link')[0],
     aboutDialog = document.getElementById('about');
 
-// for (var i = 0 ; i < 5 ; i++){
-//     var requestCardHTML = requestCardTemplate.content.cloneNode(true);
-//     requestCardHTML.querySelector('button').addEventListener("click", function(){
-//         mainView.classList.add('hide');
-//         requestDetailView.classList.remove('hide');    
-//         var requestDetailHTML = requestDetailsTemplate.content.cloneNode(true);
-//         requestDetailHTML.querySelector('volunteer-count').text = requestCardHTML.querySelector('volunteer-count').text
-//         requestDetailView.appendChild(requestDetailHTML);
-//     });
-//     cleanupRequestsDiv.appendChild(requestCardHTML);
-// }
+for (var i = 0 ; i < 5 ; i++){
+    var requestCardHTML = requestCardTemplate.content.cloneNode(true);
+    requestCardHTML.querySelector('button').addEventListener("click", () => {
+        mainView.classList.add('hide');
+        requestDetailView.classList.remove('hide');    
+        var requestDetailHTML = requestDetailsTemplate.content.cloneNode(true);
+        requestDetailHTML.querySelector('volunteer-count').text = requestCardHTML.querySelector('volunteer-count').text
+        requestDetailView.appendChild(requestDetailHTML);
+    });
+    cleanupRequestsDiv.appendChild(requestCardHTML);
+}
 
-requestCTA.addEventListener("click", function(ev){
-    showModal(requestDialog);
-});
+requestCTA.addEventListener("click", (ev) => showModal(requestDialog));
+aboutLink.addEventListener("click", (ev) => showModal(aboutDialog));
 
-aboutLink.addEventListener("click", function(ev){
-    showModal(aboutDialog);
-});
-
-document.querySelectorAll('.dialog').forEach(function(item) {
-    item.querySelector('.close').addEventListener('click', function(event) {
+document.querySelectorAll('.dialog').forEach((item) => {
+    item.querySelector('.close').addEventListener('click', (event) => {
         hideModal(item);
     });
 });
@@ -42,9 +37,9 @@ function hideModal(element) {
     element.classList.remove('open');
 }
 
-document.querySelectorAll('.tab').forEach(function(item) {
-    item.addEventListener('click', function(event) {
-        document.querySelectorAll('.tab, .tab-content').forEach(function(i){ 
+document.querySelectorAll('.tab').forEach((item) => {
+    item.addEventListener('click', (event) => {
+        document.querySelectorAll('.tab, .tab-content').forEach((i) => { 
             if(i.id.includes(event.currentTarget.id)) {
                 i.classList.add('active');
             } else {
