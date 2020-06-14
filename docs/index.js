@@ -8,17 +8,17 @@ let mainView = document.getElementById('main-view'),
     aboutLink =  document.getElementsByClassName('about-link')[0],
     aboutDialog = document.getElementById('about');
 
-for (var i = 0 ; i < 5 ; i++){
-    var requestCardHTML = requestCardTemplate.content.cloneNode(true);
-    requestCardHTML.querySelector('button').addEventListener("click", () => {
-        mainView.classList.add('hide');
-        requestDetailView.classList.remove('hide');    
-        var requestDetailHTML = requestDetailsTemplate.content.cloneNode(true);
-        requestDetailHTML.querySelector('volunteer-count').text = requestCardHTML.querySelector('volunteer-count').text
-        requestDetailView.appendChild(requestDetailHTML);
-    });
-    cleanupRequestsDiv.appendChild(requestCardHTML);
-}
+// for (var i = 0 ; i < 5 ; i++){
+//     var requestCardHTML = requestCardTemplate.content.cloneNode(true);
+//     requestCardHTML.querySelector('button').addEventListener("click", () => {
+//         mainView.classList.add('hide');
+//         requestDetailView.classList.remove('hide');    
+//         var requestDetailHTML = requestDetailsTemplate.content.cloneNode(true);
+//         requestDetailHTML.querySelector('volunteer-count').text = requestCardHTML.querySelector('volunteer-count').text
+//         requestDetailView.appendChild(requestDetailHTML);
+//     });
+//     cleanupRequestsDiv.appendChild(requestCardHTML);
+// }
 
 requestCTA.addEventListener("click", (ev) => showModal(requestDialog));
 aboutLink.addEventListener("click", (ev) => showModal(aboutDialog));
