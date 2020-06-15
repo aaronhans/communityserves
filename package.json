@@ -1,6 +1,17 @@
 {
-  "name": "svelte-app",
+  "name": "communityserves",
   "version": "1.0.0",
+  "description": "communityserves.community",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaronhans/communityserves.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aaronhans/communityserves/issues"
+  },
   "homepage": "https://aaronhans.communityserves.github.io",
   "scripts": {
     "build": "rollup -c",
