@@ -53,7 +53,13 @@ module.exports = async function addToGithub() {
           },
           "properties": {
             "title": "Art Request",
-            "address": item["Street Address of Location"]
+            "address": item["Street Address of Location"],
+            "imgURL": item["Please upload photos of the exterior space you'd like painted."],
+            "contact": {
+              "name": item["Contact Name"],
+              "phone": item["Phone Number"]
+            },
+            "createDate": item["Timestamp"]
           }
         }
         newJSON.features.push(feature);

@@ -8,7 +8,13 @@
     },
     "properties": {
       "title": "Test",
-      "address": "400 Broaway, Oakland, CA"
+      "address": "400 Broaway, Oakland, CA",
+      "imgURL": "",
+      "createDate": "",
+      "contact": {
+        "name": "",
+        "phone": ""
+      }
     }
   }]
 }
