@@ -1,7 +1,7 @@
 var ghpages = require('gh-pages');
 
 ghpages.publish(
-    'communityserves',// <-- replace yourproject with your repo name
+    'public',// <-- replace yourproject with your repo name
     {
         branch: 'gh-pages',
         repo: 'https://github.com/aaronhans/communityserves.git',
