@@ -43,7 +43,6 @@
 	.request-cleanup-cta {
 		color: #6209F2;
 		text-decoration: none;
-		
 		i {
 			margin-left: 0;
 		}
