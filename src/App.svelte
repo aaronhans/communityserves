@@ -32,10 +32,10 @@
 {/if}
 
 <footer>
-	<a class="request-help-cta" on:click="{() => showRequestTypeModal = true}"><h1>Request Community Help</h1></a>
+	<a name="request-cta" class="request-help-cta" on:click="{() => showRequestTypeModal = true}"><h1>Submit Request</h1></a>
 	<div class="footer-content">
 		<div>A community funded project to support historically <a href="https://www.npr.org/2017/05/03/526655831/a-forgotten-history-of-how-the-u-s-government-segregated-america" target="_blank">red-lined</a> black & brown cities in direct action through service &amp; art.</div>
-		<div class="footer-links"><a class="about-link" on:click="{() => showAboutModal = true}">About</a></div>
+		<div class="footer-links"><a name="about-link" on:click="{() => showAboutModal = true}">About</a></div>
 	</div>
 </footer>
 

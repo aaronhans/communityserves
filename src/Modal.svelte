@@ -43,7 +43,7 @@
 
 <div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
 	<div class="modal-content">
-		<div autofocus on:click={close} class="close icon-close"></div>
+		<div on:click={close} class="close icon-close"></div>
 		<slot></slot>
 	</div>
 	<!-- svelte-ignore a11y-autofocus -->
