@@ -7,6 +7,12 @@ function authheader() {
   };
 }
 
+const getOptions = (bodyJSON) => ({
+  method: "PUT",
+  headers: authHeader,
+  body: JSON.stringify(bodyJSON),
+});
+
 const sha1 = require("sha1");
 const githubApiContents = "contents/";
 const githubApiMerges = "merges";
@@ -149,36 +155,14 @@ module.exports = async function addToGithub() {
         newJSON.features.push(feature);
       })
       
-      /*
-        {
-          Timestamp: "6/7/2020 14:17:42",
-          Please upload photos of the exterior space you'd like painted.: "https://drive.google.com/open?id=1Bv_vSIhdnY6LIaMSAOpVtbj0UbfCssFh",
-          Are you submitting this request on behalf of a Business or Landlord?: "No",
-          Email: "",
-          Permission to put murals up is determined entirely by the landholder of the property being submitted: {
-          Are you the landholder of this property?: "Yes"
-          },
-          Contact Name: "Aaron Hans",
-          Phone Number: "92599899425",
-          Email Address: "aaronhans@gmail.com",
-          Street Address of Location: "400 Broadway",
-          What city are you in?: "",
-          Request New City: "",
-          Verified Business?: "",
-        }
-      */
-      
       console.log(newJSON)
-      let newFile = JSON.stringify(newJSON)
+      newFile = JSON.stringify(newJSON)
       console.log(newFile)
-  
-      // retrieved csv
-      // need to turn it into geojson
     });
 
   let githubBranch = "master";
   let githubApiUrl = "https://api.github.com/repos/aaronhans/communityserves/";
-  let fileLocation = 'docs/art-requests-test.json';
+  let fileLocation = 'public/data/art-requests-test.json';
 
   const newURL = `${githubApiUrl}${githubApiContents}${fileLocation}?ref=${githubBranch}`;
   console.log(newURL)
@@ -189,21 +173,12 @@ module.exports = async function addToGithub() {
     //update
     const json = await existingFileResponse.json();
 
-    // await fetchJSON(json.url, getPutOptions(updatebody));
-    // console.log(`UPDATE Success: ${newContentName}`);
-
-    const base64 = Base64.encode(newFile);
-
-    const getOptions = (bodyJSON) => ({
-      method: "PUT",
-      headers: authHeader,
-      body: JSON.stringify(bodyJSON),
-    });
+    // const base64 = Base64.encode(newFile);
 
     let body = {
       committer,
       branch: githubBranch,
-      content: base64,
+      content: newFile.toString('base64'),
       sha: json.sha,
     };
 
