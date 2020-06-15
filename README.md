@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-# communityserves
-communityserves.community
-
-spreadsheet: https://docs.google.com/spreadsheets/d/1MidHs-D_99kxWy_HEOmoelryNlG-X60A8IYd8tq0iHw/edit#gid=1508614744
-=======
 *Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
 ---
@@ -97,4 +91,3 @@ Then, from within your project folder:
 npm run build
 surge public my-project.surge.sh
 ```
->>>>>>> aa6e7abe610f6775c433b87c097924c090ba4cbb
