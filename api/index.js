@@ -153,7 +153,6 @@ module.exports = async function addToGithub(url, type) {
           "properties": {
             "category": type,
             "address": item["Street Address of Location"],
-            "imgURL": item["Please upload photos of the exterior space you'd like painted."],
             "contact": {
               "name": item["Contact Name"],
               "phone": item["Phone Number"]
@@ -161,7 +160,13 @@ module.exports = async function addToGithub(url, type) {
             "createDate": item["Timestamp"]
           }
         }
-
+        var img = item["Please upload photos of the exterior space you'd like painted."];
+        var imgID = img ? img.split("id=") : null;
+        if(imgID) {
+          feature.properties.imgID = imgID ? imgID[1] : img;
+        } else {
+          feature.properties.imgURL = img;
+        }
         if(item["Business name (as listed on Google Maps)"]) {
           feature.properties.businessName = item["Business name (as listed on Google Maps)"];
         }

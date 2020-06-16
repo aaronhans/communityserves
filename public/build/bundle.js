@@ -1207,7 +1207,48 @@ var app = (function () {
 
     const file$4 = "src/requestCard.svelte";
 
-    // (9:12) {#if request.properties.businessName}
+    // (7:4) {#if request.properties.imgURL}
+    function create_if_block_1(ctx) {
+    	let div;
+    	let img;
+    	let img_src_value;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			img = element("img");
+    			if (img.src !== (img_src_value = /*request*/ ctx[0].properties.imgURL)) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", "Request Location");
+    			add_location(img, file$4, 7, 33, 354);
+    			attr_dev(div, "class", "request-img svelte-1ryoyvr");
+    			add_location(div, file$4, 7, 8, 329);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, img);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*request*/ 1 && img.src !== (img_src_value = /*request*/ ctx[0].properties.imgURL)) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1.name,
+    		type: "if",
+    		source: "(7:4) {#if request.properties.imgURL}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (11:8) {#if request.properties.businessName}
     function create_if_block$1(ctx) {
     	let div;
     	let t_value = /*request*/ ctx[0].properties.businessName + "";
@@ -1218,7 +1259,7 @@ var app = (function () {
     			div = element("div");
     			t = text(t_value);
     			attr_dev(div, "class", "request-name");
-    			add_location(div, file$4, 9, 16, 425);
+    			add_location(div, file$4, 11, 12, 525);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1236,7 +1277,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(9:12) {#if request.properties.businessName}",
+    		source: "(11:8) {#if request.properties.businessName}",
     		ctx
     	});
 
@@ -1244,93 +1285,105 @@ var app = (function () {
     }
 
     function create_fragment$5(ctx) {
-    	let div4;
-    	let div0;
+    	let div3;
     	let t0;
-    	let div2;
-    	let t1;
     	let div1;
+    	let t1;
+    	let div0;
     	let t2;
     	let a;
     	let t4;
-    	let div3;
+    	let div2;
     	let button;
     	let t5;
     	let br;
-    	let if_block = /*request*/ ctx[0].properties.businessName && create_if_block$1(ctx);
+    	let if_block0 = /*request*/ ctx[0].properties.imgURL && create_if_block_1(ctx);
+    	let if_block1 = /*request*/ ctx[0].properties.businessName && create_if_block$1(ctx);
 
     	const block = {
     		c: function create() {
-    			div4 = element("div");
-    			div0 = element("div");
+    			div3 = element("div");
+    			if (if_block0) if_block0.c();
     			t0 = space();
-    			div2 = element("div");
-    			if (if_block) if_block.c();
-    			t1 = space();
     			div1 = element("div");
+    			if (if_block1) if_block1.c();
+    			t1 = space();
+    			div0 = element("div");
     			t2 = space();
     			a = element("a");
     			a.textContent = "See Details";
     			t4 = space();
-    			div3 = element("div");
+    			div2 = element("div");
     			button = element("button");
     			t5 = text("Serve");
     			br = element("br");
-    			attr_dev(div0, "class", "request-img svelte-1ryoyvr");
-    			add_location(div0, file$4, 6, 4, 289);
-    			attr_dev(div1, "class", "create-date");
-    			add_location(div1, file$4, 11, 12, 521);
+    			attr_dev(div0, "class", "create-date");
+    			add_location(div0, file$4, 13, 8, 613);
     			attr_dev(a, "class", "more-details");
-    			add_location(a, file$4, 12, 12, 586);
-    			attr_dev(div2, "class", "request-details svelte-1ryoyvr");
-    			add_location(div2, file$4, 7, 8, 329);
-    			add_location(br, file$4, 16, 17, 741);
+    			add_location(a, file$4, 14, 8, 674);
+    			attr_dev(div1, "class", "request-details svelte-1ryoyvr");
+    			add_location(div1, file$4, 9, 4, 437);
+    			add_location(br, file$4, 18, 13, 815);
     			attr_dev(button, "class", "serve-cta primary-btn svelte-1ryoyvr");
-    			add_location(button, file$4, 15, 10, 685);
-    			attr_dev(div3, "class", "request-cta svelte-1ryoyvr");
-    			add_location(div3, file$4, 14, 8, 649);
-    			attr_dev(div4, "class", "request-card svelte-1ryoyvr");
-    			add_location(div4, file$4, 5, 0, 258);
+    			add_location(button, file$4, 17, 8, 763);
+    			attr_dev(div2, "class", "request-cta svelte-1ryoyvr");
+    			add_location(div2, file$4, 16, 4, 729);
+    			attr_dev(div3, "class", "request-card svelte-1ryoyvr");
+    			add_location(div3, file$4, 5, 0, 258);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div4, anchor);
-    			append_dev(div4, div0);
-    			append_dev(div4, t0);
-    			append_dev(div4, div2);
-    			if (if_block) if_block.m(div2, null);
-    			append_dev(div2, t1);
-    			append_dev(div2, div1);
-    			div1.innerHTML = /*formattedDate*/ ctx[1];
-    			append_dev(div2, t2);
-    			append_dev(div2, a);
-    			append_dev(div4, t4);
-    			append_dev(div4, div3);
-    			append_dev(div3, button);
+    			insert_dev(target, div3, anchor);
+    			if (if_block0) if_block0.m(div3, null);
+    			append_dev(div3, t0);
+    			append_dev(div3, div1);
+    			if (if_block1) if_block1.m(div1, null);
+    			append_dev(div1, t1);
+    			append_dev(div1, div0);
+    			div0.innerHTML = /*formattedDate*/ ctx[1];
+    			append_dev(div1, t2);
+    			append_dev(div1, a);
+    			append_dev(div3, t4);
+    			append_dev(div3, div2);
+    			append_dev(div2, button);
     			append_dev(button, t5);
     			append_dev(button, br);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (/*request*/ ctx[0].properties.businessName) {
-    				if (if_block) {
-    					if_block.p(ctx, dirty);
+    			if (/*request*/ ctx[0].properties.imgURL) {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
     				} else {
-    					if_block = create_if_block$1(ctx);
-    					if_block.c();
-    					if_block.m(div2, t1);
+    					if_block0 = create_if_block_1(ctx);
+    					if_block0.c();
+    					if_block0.m(div3, t0);
     				}
-    			} else if (if_block) {
-    				if_block.d(1);
-    				if_block = null;
+    			} else if (if_block0) {
+    				if_block0.d(1);
+    				if_block0 = null;
+    			}
+
+    			if (/*request*/ ctx[0].properties.businessName) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+    				} else {
+    					if_block1 = create_if_block$1(ctx);
+    					if_block1.c();
+    					if_block1.m(div1, t1);
+    				}
+    			} else if (if_block1) {
+    				if_block1.d(1);
+    				if_block1 = null;
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div4);
-    			if (if_block) if_block.d();
+    			if (detaching) detach_dev(div3);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
     		}
     	};
 
@@ -2168,7 +2221,7 @@ var app = (function () {
     const file$7 = "src/App.svelte";
 
     // (15:0) {#if showRequestTypeModal}
-    function create_if_block_1(ctx) {
+    function create_if_block_1$1(ctx) {
     	let modal;
     	let current;
 
@@ -2215,7 +2268,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block_1.name,
+    		id: create_if_block_1$1.name,
     		type: "if",
     		source: "(15:0) {#if showRequestTypeModal}",
     		ctx
@@ -2465,7 +2518,7 @@ var app = (function () {
     	let dispose;
     	map = new Map$1({ $$inline: true });
     	requests = new Requests({ $$inline: true });
-    	let if_block0 = /*showRequestTypeModal*/ ctx[0] && create_if_block_1(ctx);
+    	let if_block0 = /*showRequestTypeModal*/ ctx[0] && create_if_block_1$1(ctx);
     	let if_block1 = /*showAboutModal*/ ctx[1] && create_if_block$2(ctx);
 
     	const block = {
@@ -2556,7 +2609,7 @@ var app = (function () {
     						transition_in(if_block0, 1);
     					}
     				} else {
-    					if_block0 = create_if_block_1(ctx);
+    					if_block0 = create_if_block_1$1(ctx);
     					if_block0.c();
     					transition_in(if_block0, 1);
     					if_block0.m(t2.parentNode, t2);
