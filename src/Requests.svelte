@@ -26,8 +26,8 @@
         <TabPanel>
             <p>Tap serve if you are an artist interested in claiming this spot.</p>
             <div class="art-requests">
-                {#each artRequests as feature, i}
-                    <RequestCard request="{feature.properties.category}"/>
+                {#each artRequests as request, i}
+                    <RequestCard request="{request}"/>
                 {/each} 
             </div>
         </TabPanel>

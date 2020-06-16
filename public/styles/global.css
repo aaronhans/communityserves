@@ -69,7 +69,12 @@ html {
 	border: none;
 	border-radius: 90px;
 	padding: 0.5em 1em;
-  }
+}
+
+.primary-btn:focus {
+	box-shadow: 0 0 5px #6209F2;
+	outline: none;
+}
   
   .request-help-cta {
 	font-weight: bold;

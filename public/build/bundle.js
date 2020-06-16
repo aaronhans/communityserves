@@ -434,6 +434,13 @@ var app = (function () {
         else
             dispatch_dev("SvelteDOMSetAttribute", { node, attribute, value });
     }
+    function set_data_dev(text, data) {
+        data = '' + data;
+        if (text.data === data)
+            return;
+        dispatch_dev("SvelteDOMSetData", { node: text, data });
+        text.data = data;
+    }
     function validate_each_argument(arg) {
         if (typeof arg !== 'string' && !(arg && typeof arg === 'object' && 'length' in arg)) {
             let msg = '{#each} only iterates over array-like objects.';
@@ -1200,30 +1207,130 @@ var app = (function () {
 
     const file$4 = "src/requestCard.svelte";
 
-    function create_fragment$5(ctx) {
-    	let div1;
-    	let div0;
+    // (9:12) {#if request.properties.businessName}
+    function create_if_block$1(ctx) {
+    	let div;
+    	let t_value = /*request*/ ctx[0].properties.businessName + "";
+    	let t;
 
     	const block = {
     		c: function create() {
-    			div1 = element("div");
+    			div = element("div");
+    			t = text(t_value);
+    			attr_dev(div, "class", "request-name");
+    			add_location(div, file$4, 9, 16, 425);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*request*/ 1 && t_value !== (t_value = /*request*/ ctx[0].properties.businessName + "")) set_data_dev(t, t_value);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$1.name,
+    		type: "if",
+    		source: "(9:12) {#if request.properties.businessName}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$5(ctx) {
+    	let div4;
+    	let div0;
+    	let t0;
+    	let div2;
+    	let t1;
+    	let div1;
+    	let t2;
+    	let a;
+    	let t4;
+    	let div3;
+    	let button;
+    	let t5;
+    	let br;
+    	let if_block = /*request*/ ctx[0].properties.businessName && create_if_block$1(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div4 = element("div");
     			div0 = element("div");
-    			div0.textContent = "request.properties.category";
-    			add_location(div0, file$4, 4, 4, 53);
-    			add_location(div1, file$4, 3, 0, 43);
+    			t0 = space();
+    			div2 = element("div");
+    			if (if_block) if_block.c();
+    			t1 = space();
+    			div1 = element("div");
+    			t2 = space();
+    			a = element("a");
+    			a.textContent = "See Details";
+    			t4 = space();
+    			div3 = element("div");
+    			button = element("button");
+    			t5 = text("Serve");
+    			br = element("br");
+    			attr_dev(div0, "class", "request-img svelte-1ryoyvr");
+    			add_location(div0, file$4, 6, 4, 289);
+    			attr_dev(div1, "class", "create-date");
+    			add_location(div1, file$4, 11, 12, 521);
+    			attr_dev(a, "class", "more-details");
+    			add_location(a, file$4, 12, 12, 586);
+    			attr_dev(div2, "class", "request-details svelte-1ryoyvr");
+    			add_location(div2, file$4, 7, 8, 329);
+    			add_location(br, file$4, 16, 17, 741);
+    			attr_dev(button, "class", "serve-cta primary-btn svelte-1ryoyvr");
+    			add_location(button, file$4, 15, 10, 685);
+    			attr_dev(div3, "class", "request-cta svelte-1ryoyvr");
+    			add_location(div3, file$4, 14, 8, 649);
+    			attr_dev(div4, "class", "request-card svelte-1ryoyvr");
+    			add_location(div4, file$4, 5, 0, 258);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, div0);
+    			insert_dev(target, div4, anchor);
+    			append_dev(div4, div0);
+    			append_dev(div4, t0);
+    			append_dev(div4, div2);
+    			if (if_block) if_block.m(div2, null);
+    			append_dev(div2, t1);
+    			append_dev(div2, div1);
+    			div1.innerHTML = /*formattedDate*/ ctx[1];
+    			append_dev(div2, t2);
+    			append_dev(div2, a);
+    			append_dev(div4, t4);
+    			append_dev(div4, div3);
+    			append_dev(div3, button);
+    			append_dev(button, t5);
+    			append_dev(button, br);
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			if (/*request*/ ctx[0].properties.businessName) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+    				} else {
+    					if_block = create_if_block$1(ctx);
+    					if_block.c();
+    					if_block.m(div2, t1);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(div4);
+    			if (if_block) if_block.d();
     		}
     	};
 
@@ -1240,6 +1347,12 @@ var app = (function () {
 
     function instance$5($$self, $$props, $$invalidate) {
     	let { request } = $$props;
+    	let createDate = new Date(request.properties.createDate);
+
+    	let formattedDate = createDate
+    	? `${createDate.getMonth()}/${createDate.getDay()} &middot; ${createDate.getHours()}:${createDate.getMinutes()}`
+    	: "";
+
     	const writable_props = ["request"];
 
     	Object.keys($$props).forEach(key => {
@@ -1253,17 +1366,19 @@ var app = (function () {
     		if ("request" in $$props) $$invalidate(0, request = $$props.request);
     	};
 
-    	$$self.$capture_state = () => ({ request });
+    	$$self.$capture_state = () => ({ request, createDate, formattedDate });
 
     	$$self.$inject_state = $$props => {
     		if ("request" in $$props) $$invalidate(0, request = $$props.request);
+    		if ("createDate" in $$props) createDate = $$props.createDate;
+    		if ("formattedDate" in $$props) $$invalidate(1, formattedDate = $$props.formattedDate);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [request];
+    	return [request, formattedDate];
     }
 
     class RequestCard extends SvelteComponentDev {
@@ -1295,7 +1410,7 @@ var app = (function () {
     	}
     }
 
-    var type="FeatureCollection";var features=[{type:"Feature",geometry:{type:"Point",coordinates:[-122.274688,37.797367]},properties:{category:"Art Request",address:"400 Broadway, Oakland, CA",imgURL:"https://drive.google.com/open?id=1Bv_vSIhdnY6LIaMSAOpVtbj0UbfCssFh",contact:{name:"Aaron Hans",phone:"92599899425"},createDate:"6/7/2020 14:17:42"}},{type:"Feature",geometry:{type:"Point",coordinates:[-122.274688,37.797367]},properties:{category:"Art Request",address:"3356 Piedmont Ave, Oakland, CA 94611",imgURL:"https://drive.google.com/open?id=14OUe6IBg6l22jFyQpjP1KpxCs-u6gUcX",contact:{name:"Michele weiner",phone:"5104888564"},createDate:"6/12/2020 16:50:14"}}];var artReqestJSON = {type:type,features:features};
+    var type="FeatureCollection";var features=[{type:"Feature",geometry:{type:"Point",coordinates:["-122.259792,37.821127"]},properties:{category:"Art Requests",address:"3356 Piedmont Ave, Oakland, CA 94611",imgURL:"https://drive.google.com/open?id=14OUe6IBg6l22jFyQpjP1KpxCs-u6gUcX",contact:{name:"Michele weiner",phone:"5104888564"},createDate:"6/12/2020 16:50:14"}},{type:"Feature",geometry:{type:"Point",coordinates:[-122.274688,37.797367]},properties:{category:"Art Requests",address:"400 Broadway, Oakland, CA",imgURL:"https://drive.google.com/open?id=1Bv_vSIhdnY6LIaMSAOpVtbj0UbfCssFh",contact:{name:"Aaron Hans",phone:"92599899425"},createDate:"6/7/2020 14:17:42"}}];var artReqestJSON = {type:type,features:features};
 
     /* src/Requests.svelte generated by Svelte v3.23.2 */
 
@@ -1483,15 +1598,13 @@ var app = (function () {
     	return block;
     }
 
-    // (29:16) {#each artRequests as feature, i}
+    // (29:16) {#each artRequests as request, i}
     function create_each_block(ctx) {
     	let requestcard;
     	let current;
 
     	requestcard = new RequestCard({
-    			props: {
-    				request: /*feature*/ ctx[1].properties.category
-    			},
+    			props: { request: /*request*/ ctx[1] },
     			$$inline: true
     		});
 
@@ -1522,7 +1635,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(29:16) {#each artRequests as feature, i}",
+    		source: "(29:16) {#each artRequests as request, i}",
     		ctx
     	});
 
@@ -2180,7 +2293,7 @@ var app = (function () {
     }
 
     // (23:0) {#if showAboutModal}
-    function create_if_block$1(ctx) {
+    function create_if_block$2(ctx) {
     	let modal;
     	let current;
 
@@ -2227,7 +2340,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$1.name,
+    		id: create_if_block$2.name,
     		type: "if",
     		source: "(23:0) {#if showAboutModal}",
     		ctx
@@ -2353,7 +2466,7 @@ var app = (function () {
     	map = new Map$1({ $$inline: true });
     	requests = new Requests({ $$inline: true });
     	let if_block0 = /*showRequestTypeModal*/ ctx[0] && create_if_block_1(ctx);
-    	let if_block1 = /*showAboutModal*/ ctx[1] && create_if_block$1(ctx);
+    	let if_block1 = /*showAboutModal*/ ctx[1] && create_if_block$2(ctx);
 
     	const block = {
     		c: function create() {
@@ -2466,7 +2579,7 @@ var app = (function () {
     						transition_in(if_block1, 1);
     					}
     				} else {
-    					if_block1 = create_if_block$1(ctx);
+    					if_block1 = create_if_block$2(ctx);
     					if_block1.c();
     					transition_in(if_block1, 1);
     					if_block1.m(t3.parentNode, t3);
