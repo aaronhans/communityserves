@@ -17,6 +17,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public",
+    "api": "node api/local.js",
     "deploy": "npm run build && node ./scripts/gh-pages.js"
   },
   "devDependencies": {
@@ -33,6 +34,9 @@
     "svelte-preprocess": "^3.9.7"
   },
   "dependencies": {
+    "csvtojson": "^2.0.10",
+    "node-fetch": "^2.6.0",
+    "sha1": "^1.1.1",
     "sirv-cli": "^0.4.4"
   }
 }
