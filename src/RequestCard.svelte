@@ -2,17 +2,18 @@
     export let request;
     let createDate = new Date(request.properties.createDate);
     let formattedDate = createDate ? `${createDate.getMonth()}/${createDate.getDay()} &middot; ${createDate.getHours()}:${createDate.getMinutes()}`: '';
+
 </script>
 <div class="request-card">
-    {#if request.properties.imgURL}
-        <div class="request-img"><img src="{request.properties.imgID}" alt="Request Location"></div>
+    {#if false && request.properties.imgURL}
+        <div class="request-img"><img src="{request.properties.imgURL.split('id=') ? `https://drive.google.com/file/d/${request.properties.imgURL.split('id=')[1]}/preview` : imgURL}" alt="Request Location"></div>
     {/if}
     <div class="request-details">
         {#if request.properties.businessName}
             <div class="request-name">{request.properties.businessName}</div>
         {/if}
         <div class="create-date">{@html formattedDate}</div>
-        <a class="more-details">See Details</a>
+        <!-- <a class="more-details">See Details</a> -->
     </div>
     <div class="request-cta">
         <button class="serve-cta primary-btn">
