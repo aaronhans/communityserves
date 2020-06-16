@@ -7,12 +7,6 @@ function authheader() {
   };
 }
 
-const getOptions = (bodyJSON) => ({
-  method: "PUT",
-  headers: authHeader,
-  body: JSON.stringify(bodyJSON),
-});
-
 const sha1 = require("sha1");
 const githubApiContents = "contents/";
 const githubApiMerges = "merges";
@@ -124,9 +118,17 @@ const authHeader = {
   Authorization: `Bearer ${process.env["GITHUB_TOKEN"]}`,
   "Content-Type": "application/json",
 };
-const defaultoptions = () => ({ method: "GET", headers: authHeader });
 
 module.exports = async function addToGithub(url, type) {
+
+  const defaultoptions = () => ({ method: "GET", headers: authHeader });
+
+  const getOptions = (bodyJSON) => ({
+    method: "PUT",
+    headers: authHeader,
+    body: JSON.stringify(bodyJSON),
+  });
+  
   let newFile, newJSON;
   let unMappables = [];
   await fetch(url)
