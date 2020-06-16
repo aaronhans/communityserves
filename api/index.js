@@ -151,7 +151,7 @@ module.exports = async function addToGithub(url, type) {
             "coordinates": []
           },
           "properties": {
-            "title": type,
+            "category": type,
             "address": item["Street Address of Location"],
             "imgURL": item["Please upload photos of the exterior space you'd like painted."],
             "contact": {

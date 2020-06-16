@@ -3,9 +3,9 @@
     import RequestCard from './requestCard.svelte'
     // import * as cleanupRequests from '../data/clean-up-requests.json'
     // import { features } from 'data/art-requests.json';
-    import { features } from '../public/data/art-requests.json'
-
-    console.log(features);
+    import artReqestJSON from '../public/data/art-requests.json'
+    let artRequests = artReqestJSON.features;
+    
 </script>
 
 <section>
@@ -19,15 +19,17 @@
         <TabPanel>
             <p>Tap serve if you’d like to get involved with a clean up request, then share with your neighbors.</p>
             <div class="cleanup-requests">
-                <!-- {#each cats as { id, name }, i}
-                    <RequestCard />
-                {/each}  -->
+                
             </div>
         </TabPanel>
 
         <TabPanel>
             <p>Tap serve if you are an artist interested in claiming this spot.</p>
-            <div class="cleanup-requests"></div>
+            <div class="art-requests">
+                {#each artRequests as feature, i}
+                    <RequestCard request="{feature.properties.category}"/>
+                {/each} 
+            </div>
         </TabPanel>
     </Tabs>
 </section>
