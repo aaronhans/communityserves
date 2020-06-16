@@ -126,20 +126,17 @@ const authHeader = {
 };
 const defaultoptions = () => ({ method: "GET", headers: authHeader });
 
-module.exports = async function addToGithub() {
-  // art request: https://docs.google.com/spreadsheets/d/e/2PACX-1vTRun2moHUzxeAr4GjxtT9ONvGdjUyFqgR9NJHul3PXAJnteumrigM0p1rMJR7V6prl4mkTUaXiqhHm/pub?gid=1508614744&single=true&output=csv
-  // clean up: https://docs.google.com/spreadsheets/d/e/2PACX-1vTRun2moHUzxeAr4GjxtT9ONvGdjUyFqgR9NJHul3PXAJnteumrigM0p1rMJR7V6prl4mkTUaXiqhHm/pub?gid=563594306&single=true&output=csv
-  // complete cleanup: https://docs.google.com/spreadsheets/d/e/2PACX-1vTRun2moHUzxeAr4GjxtT9ONvGdjUyFqgR9NJHul3PXAJnteumrigM0p1rMJR7V6prl4mkTUaXiqhHm/pub?gid=390860791&single=true&output=csv
-  // art installs: https://docs.google.com/spreadsheets/d/e/2PACX-1vTRun2moHUzxeAr4GjxtT9ONvGdjUyFqgR9NJHul3PXAJnteumrigM0p1rMJR7V6prl4mkTUaXiqhHm/pub?gid=698941003&single=true&output=csv
-  let newFile;
-  await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTRun2moHUzxeAr4GjxtT9ONvGdjUyFqgR9NJHul3PXAJnteumrigM0p1rMJR7V6prl4mkTUaXiqhHm/pub?gid=1508614744&single=true&output=csv')
+module.exports = async function addToGithub(url, type) {
+  let newFile, newJSON;
+  let unMappables = [];
+  await fetch(url)
     .then(response => response.text())
     .then(async data => {
 
       // Async / await usage
       let returnedData = await csv().fromString(data);
 
-      let newJSON = {
+      newJSON = {
         "type": "FeatureCollection",
         "features": []
       }
@@ -149,10 +146,10 @@ module.exports = async function addToGithub() {
           "type": "Feature",
           "geometry": {
             "type": "Point",
-            "coordinates": [-122.274688, 37.797367]
+            "coordinates": []
           },
           "properties": {
-            "title": "Art Request",
+            "title": type,
             "address": item["Street Address of Location"],
             "imgURL": item["Please upload photos of the exterior space you'd like painted."],
             "contact": {
@@ -162,52 +159,91 @@ module.exports = async function addToGithub() {
             "createDate": item["Timestamp"]
           }
         }
-        newJSON.features.push(feature);
+
+        if(item['latlon']) {
+          feature.geometry.coordinates = [item.latlon]
+          newJSON.features.push(feature);
+        } else {
+          unMappables.push(feature)
+        }
       })
       
       console.log(newJSON)
-      newFile = JSON.stringify(newJSON)
-      console.log(newFile)
     });
 
   let githubBranch = "master";
   let githubApiUrl = "https://api.github.com/repos/aaronhans/communityserves/";
-  let fileLocation = 'public/data/art-requests.json';
-
+  let fileLocation = `public/data/${type.toLowerCase().replace(/ /g,'-')}.json`;
+  
   const newURL = `${githubApiUrl}${githubApiContents}${fileLocation}?ref=${githubBranch}`;
   console.log(newURL)
 
   const existingFileResponse = await fetch(newURL, defaultoptions());
+  const json = await existingFileResponse.json();
 
-  // if (existingFileResponse.ok) {
-    //update
-    const json = await existingFileResponse.json();
-    const base64 = Base64.encode(newFile);
+  const rawURL = `https://raw.githubusercontent.com/aaronhans/communityserves/master/${fileLocation}`;
+  console.log('rawURL')
+  console.log(rawURL)
 
-    let body = {
-      committer,
-      branch: githubBranch,
-      content: base64,
-      sha: json.sha,
-    };
+  let rawFileResponse = await fetch(rawURL, defaultoptions());
+  let rawjson = await rawFileResponse.json();
 
-    //ADD
-    const newFilePath = `${fileLocation}`;
-    body.message = `Update file ${newFilePath}`;
+  console.log('this is what is there now')
+  if(rawjson) {
+    for(let i = 0;i<unMappables.length;i++) { // have to basic loop or it won't wait for await
+      let feat =unMappables[i];
+      if(feat.geometry.coordinates.length < 2) {
 
-    console.log(getOptions(body));
-    console.log(`${githubApiUrl}contents/${newFilePath}`);
+        // loop through rawjson first
+        let found = false;
+        rawjson.features.forEach(rawj => {
+          if(rawj.properties.address === feat.properties.address) {
+            console.log('writing from GH buddy')
+            feat.geometry.coordinates = rawj.geometry.coordinates;
+            newJSON.features.push(feat);
+            found = true;
+          }
+        })
+        if(!found) {
+          let featCallURL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(feat.properties.address)}.json?access_token=pk.eyJ1IjoiYWFyb25oYW5zIiwiYSI6ImNrYjVrc3hvaTBkMW4zMW1wbXU4emlhaHgifQ.3Zpqx654l58G4Fl_IdcXLA`;
+          console.log('calling for '+featCallURL)
+          let geo = await fetch(featCallURL)
+          let mapJSON = await geo.json();
+          console.log('got a RESPONSE')
+          console.log(mapJSON)
+          if(mapJSON.features && mapJSON.features.length > 0) {
+            feat.geometry.coordinates = [mapJSON.features.center];
+            newJSON.features.push(feat);
+          }  
+        }
+      }
+    }
+  }
+  newFile = JSON.stringify(newJSON)
+  console.log(newFile)
 
-    fetch(`${githubApiUrl}contents/${newFilePath}`, getOptions(body))
-      .then((res) => {
-        console.log(res);
-        console.log(`ADD Success: ${newFilePath}`);
-      })
-      .catch(async (res) => {
-        console.log(res)
-        console.log('fail')
-      });
-  /*} else {
-    console.log('fail')
-  }*/
+  const base64 = Base64.encode(newFile);
+
+  let body = {
+    committer,
+    branch: githubBranch,
+    content: base64,
+    sha: json.sha,
+  };
+
+  //ADD
+  const newFilePath = `${fileLocation}`;
+  body.message = `Update file ${newFilePath}`;
+
+  console.log(`${githubApiUrl}contents/${newFilePath}`);
+
+  fetch(`${githubApiUrl}contents/${newFilePath}`, getOptions(body))
+    .then((res) => {
+      console.log(res);
+      console.log(`ADD Success: ${newFilePath}`);
+    })
+    .catch(async (res) => {
+      console.log(res)
+      console.log('fail')
+    });
 };
