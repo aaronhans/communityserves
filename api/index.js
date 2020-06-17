@@ -179,6 +179,9 @@ module.exports = async function addToGithub(url, type) {
   let githubBranch = "master";
   let githubApiUrl = "https://api.github.com/repos/aaronhans/communityserves/";
   let fileLocation = `public/data/${type.toLowerCase().replace(/ /g,'-')}.json`;
+  if(type==="Art Request") {
+    fileLocation.replace('.json','s.json');
+  }
   
   const newURL = `${githubApiUrl}${githubApiContents}${fileLocation}?ref=${githubBranch}`;
   console.log(newURL)
