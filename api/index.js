@@ -145,7 +145,7 @@ module.exports = async function addToGithub(url, type) {
 
       returnedData.forEach((item, index) => {
         let feature = {
-          "id": `${type}_${index}`,
+          "id": `${type}_${index}`.replace(/ /g, ""),
           "type": "Feature",
           "geometry": {
             "type": "Point",
