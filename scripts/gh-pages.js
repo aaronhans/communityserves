@@ -1,5 +1,5 @@
 var ghpages = require('gh-pages');
-
+console.log('Beginning Deploy')
 ghpages.publish(
     'public',// <-- replace yourproject with your repo name
     {
