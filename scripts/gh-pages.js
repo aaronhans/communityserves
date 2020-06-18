@@ -10,7 +10,11 @@ ghpages.publish(
             email: 'aaron.hans@alpha.ca.gov'
         }
     },
-    () => {
-        console.log('Deploy Complete!')
+    (err) => {
+        if(err){
+            console.log(err);
+        } else {
+            console.log('Deploy Complete!');
+        }
     }
 )
