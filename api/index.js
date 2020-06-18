@@ -174,28 +174,27 @@ module.exports = async function addToGithub(url, type) {
         }
       })
       
-      console.log(newJSON)
+      // console.log(newJSON)
     });
 
   let githubBranch = "master";
   let githubApiUrl = "https://api.github.com/repos/aaronhans/communityserves/";
   let fileLocation = `public/data/${type.toLowerCase().replace(/ /g,'-')}.json`;
-  if(type==="Art Request") {
-    fileLocation.replace('.json','s.json');
-  }
   
   const newURL = `${githubApiUrl}${githubApiContents}${fileLocation}?ref=${githubBranch}`;
-  console.log(newURL)
+  //console.log(newURL)
 
   const existingFileResponse = await fetch(newURL, defaultoptions());
   const json = await existingFileResponse.json();
+  
 
   const rawURL = `https://raw.githubusercontent.com/aaronhans/communityserves/master/${fileLocation}`;
   console.log('rawURL')
   console.log(rawURL)
 
   let rawFileResponse = await fetch(rawURL, defaultoptions());
-  let rawjson = await rawFileResponse.json();
+  let rawjson = await rawFileResponse.text();
+  console.log(rawjson)
 
   console.log('this is what is there now')
   if(rawjson) {
@@ -205,9 +204,9 @@ module.exports = async function addToGithub(url, type) {
 
         // loop through rawjson first
         let found = false;
-        rawjson.features.forEach(rawj => {
+        JSON.parse(rawjson).features.forEach(rawj => {
           if(rawj.properties.address === feat.properties.address) {
-            console.log('writing from GH buddy')
+            // console.log('writing from GH buddy')
             feat.geometry.coordinates = rawj.geometry.coordinates;
             newJSON.features.push(feat);
             found = true;
@@ -215,11 +214,11 @@ module.exports = async function addToGithub(url, type) {
         })
         if(!found) {
           let featCallURL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(feat.properties.address)}.json?access_token=pk.eyJ1IjoiYWFyb25oYW5zIiwiYSI6ImNrYjVrc3hvaTBkMW4zMW1wbXU4emlhaHgifQ.3Zpqx654l58G4Fl_IdcXLA`;
-          console.log('calling for '+featCallURL)
+          // console.log('calling for '+featCallURL)
           let geo = await fetch(featCallURL)
           let mapJSON = await geo.json();
-          console.log('got a RESPONSE')
-          console.log(mapJSON)
+          // console.log('got a RESPONSE')
+          // console.log(mapJSON)
           if(mapJSON.features && mapJSON.features.length > 0) {
             feat.geometry.coordinates = [mapJSON.features.center];
             newJSON.features.push(feat);
@@ -244,15 +243,15 @@ module.exports = async function addToGithub(url, type) {
   const newFilePath = `${fileLocation}`;
   body.message = `Update file ${newFilePath}`;
 
-  console.log(`${githubApiUrl}contents/${newFilePath}`);
+  // console.log(`${githubApiUrl}contents/${newFilePath}`);
 
   fetch(`${githubApiUrl}contents/${newFilePath}`, getOptions(body))
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       console.log(`ADD Success: ${newFilePath}`);
     })
     .catch(async (res) => {
-      console.log(res)
+      //console.log(res)
       console.log('fail')
     });
 };
