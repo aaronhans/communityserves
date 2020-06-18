@@ -1,11 +1,12 @@
 <script>
     import { Tabs, TabList, TabPanel, Tab } from './tabs.js';
-    import RequestCard from './requestCard.svelte'
+    import RequestCard from './RequestCard.svelte'
+    import RequestDetails from './RequestDetails.svelte'
     // import * as cleanupRequests from '../data/clean-up-requests.json'
     // import { features } from 'data/art-requests.json';
     import artReqestJSON from '../public/data/art-requests.json'
     let artRequests = artReqestJSON.features;
-    
+    let selectedRequest;
 </script>
 
 <section>
@@ -27,9 +28,11 @@
             <p>Tap serve if you are an artist interested in claiming this spot.</p>
             <div class="art-requests">
                 {#each artRequests as request, i}
-                    <RequestCard request="{request}"/>
+                    <RequestCard request="{request}" bind:selectedRequest={selectedRequest}/>
                 {/each} 
             </div>
         </TabPanel>
     </Tabs>
 </section>
+
+<RequestDetails bind:request={selectedRequest} />

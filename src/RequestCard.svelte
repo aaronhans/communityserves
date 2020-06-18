@@ -1,5 +1,6 @@
 <script>
     export let request;
+    export let selectedRequest;
     let createDate = new Date(request.properties.createDate);
     let formattedDate = createDate ? `${createDate.getMonth()}/${createDate.getDay()} &middot; ${createDate.getHours()}:${createDate.getMinutes()}`: '';
 
@@ -13,7 +14,7 @@
             <div class="request-name">{request.properties.businessName}</div>
         {/if}
         <div class="create-date">{@html formattedDate}</div>
-        <!-- <a class="more-details">See Details</a> -->
+        <a name="more-details" on:click={selectedRequest = request}>See Details</a>
     </div>
     <div class="request-cta">
         <button class="serve-cta primary-btn">
