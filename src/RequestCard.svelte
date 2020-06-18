@@ -7,7 +7,7 @@
 </script>
 <div class="request-card">
     {#if false && request.properties.imgURL}
-        <div class="request-img"><img src="{request.properties.imgURL.split('id=') ? `https://drive.google.com/file/d/${request.properties.imgURL.split('id=')[1]}/preview` : imgURL}" alt="Request Location"></div>
+        <div class="request-img"><img src="{request.properties.imgURL.split('id=') ? `https://drive.google.com/file/d/${request.properties.imgURL.split('id=')[1]}/preview` : request.properties.imgURL}" alt="Request Location"></div>
     {/if}
     <div class="request-details">
         {#if request.properties.businessName}
