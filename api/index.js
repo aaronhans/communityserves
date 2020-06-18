@@ -143,7 +143,7 @@ module.exports = async function addToGithub(url, type) {
         "features": []
       }
 
-      returnedData.forEach(item, index => {
+      returnedData.forEach((item, index) => {
         let feature = {
           "id": `${type}_${index}`,
           "type": "Feature",
@@ -229,7 +229,7 @@ module.exports = async function addToGithub(url, type) {
     }
   }
   newFile = JSON.stringify(newJSON)
-  console.log(newFile)
+  // console.log(newFile)
 
   const base64 = Base64.encode(newFile);
 
