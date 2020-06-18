@@ -2,12 +2,14 @@
     import { Tabs, TabList, TabPanel, Tab } from './tabs.js';
     import RequestCard from './RequestCard.svelte'
     import RequestDetails from './RequestDetails.svelte'
+    import utils from '../scripts/utils.js'
     // import * as cleanupRequests from '../data/clean-up-requests.json'
     // import { features } from 'data/art-requests.json';
     import artReqestJSON from '../public/data/art-requests.json'
-    let artRequests = artReqestJSON.features;
-    let selectedRequest = null;
-    $: console.log(`${selectedRequest}`)
+    let artRequests = utils.asObject(artReqestJSON.features, 'id');    
+    let selectedRequestID = null;
+
+    $: selectedRequest = artRequests[selectedRequestID];
 </script>
 
 <section>
@@ -28,12 +30,14 @@
         <TabPanel>
             <p>Tap serve if you are an artist interested in claiming this spot.</p>
             <div class="art-requests">
-                {#each artRequests as request, i}
-                    <RequestCard request="{request}" bind:selectedRequest={selectedRequest}/>
+                {#each Object.keys(artRequests) as requestID}
+                    <RequestCard request="{artRequests[requestID]}" bind:selectedRequest={selectedRequestID}/>
                 {/each} 
             </div>
         </TabPanel>
     </Tabs>
 </section>
 
-<RequestDetails bind:request={selectedRequest} />
+{#if selectedRequest}
+    <RequestDetails bind:request={selectedRequest} />
+{/if}

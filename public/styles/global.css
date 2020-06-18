@@ -44,6 +44,7 @@ html {
   a {
 	color: #09C8F2;
 	cursor: pointer;
+	text-decoration: underline;
   }
   
   main {
@@ -69,6 +70,7 @@ html {
 	border: none;
 	border-radius: 90px;
 	padding: 0.5em 1em;
+	text-decoration: none;
 }
 
 .primary-btn:focus {

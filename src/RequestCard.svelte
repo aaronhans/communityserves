@@ -1,14 +1,18 @@
 <script>
+    import utils from '../scripts/utils.js'
+
     export let request;
     export let selectedRequest;
-    let createDate = new Date(request.properties.createDate);
-    let formattedDate = createDate ? `${createDate.getMonth()}/${createDate.getDay()} &middot; ${createDate.getHours()}:${createDate.getMinutes()}`: '';
-
+    let formattedDate;
+    if(request){
+      formattedDate = utils.formatDate(new Date(request.properties.createDate))
+    }
     function selectRequest() {
-      selectedRequest = request;
-      console.log(request)
+      selectedRequest = request.id.replace(/ /g, "");
     }
 </script>
+
+{#if request}
 <div class="request-card">
     {#if false && request.properties.imgURL}
         <div class="request-img"><img src="{request.properties.imgURL.split('id=') ? `https://drive.google.com/file/d/${request.properties.imgURL.split('id=')[1]}/preview` : request.properties.imgURL}" alt="Request Location"></div>
@@ -17,7 +21,7 @@
         {#if request.properties.businessName}
             <div class="request-name">{request.properties.businessName}</div>
         {/if}
-        <div class="create-date">{@html formattedDate}</div>
+        {#if formattedDate}<div class="create-date">{@html formattedDate}</div>{/if}
         <a name="more-details" on:click={selectedRequest = request}>See Details</a>
     </div>
     <div class="request-cta">
@@ -27,6 +31,7 @@
         </button>
     </div>
 </div>
+{/if}
 
 <style>
 .request-card {
