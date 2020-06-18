@@ -194,7 +194,7 @@ module.exports = async function addToGithub(url, type) {
 
   let rawFileResponse = await fetch(rawURL, defaultoptions());
   let rawjson = await rawFileResponse.text();
-  console.log(rawjson)
+  // console.log(rawjson)
 
   console.log('this is what is there now')
   if(rawjson) {
