@@ -1,5 +1,6 @@
 <script>
     export let request;
+    console.log(request);
 </script>
 
 {#if request}

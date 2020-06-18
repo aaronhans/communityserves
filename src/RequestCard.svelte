@@ -4,6 +4,10 @@
     let createDate = new Date(request.properties.createDate);
     let formattedDate = createDate ? `${createDate.getMonth()}/${createDate.getDay()} &middot; ${createDate.getHours()}:${createDate.getMinutes()}`: '';
 
+    function selectRequest() {
+      selectedRequest = request;
+      console.log(request)
+    }
 </script>
 <div class="request-card">
     {#if false && request.properties.imgURL}
@@ -17,8 +21,8 @@
         <a name="more-details" on:click={selectedRequest = request}>See Details</a>
     </div>
     <div class="request-cta">
-        <button class="serve-cta primary-btn">
-        Serve<br>
+        <button class="serve-cta primary-btn" on:click={selectRequest}>
+          Serve<br>
         <!-- <span class="sub"><span class="volunteer-count">None</span> have joined</span> -->
         </button>
     </div>

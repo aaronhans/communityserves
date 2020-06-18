@@ -6,7 +6,8 @@
     // import { features } from 'data/art-requests.json';
     import artReqestJSON from '../public/data/art-requests.json'
     let artRequests = artReqestJSON.features;
-    let selectedRequest;
+    let selectedRequest = null;
+    $: console.log(`${selectedRequest}`)
 </script>
 
 <section>
