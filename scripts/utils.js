@@ -9,7 +9,10 @@ const asObject = function asObject(array, prop){
 }
 
 const formatDate = function formatDate(date){
-    return date ? `${date.getMonth()}/${date.getDay()} &middot; ${date.getHours()}:${date.getMinutes()}`: '';
+    var hours = date.getHours() <= 12 ?  date.getHours() : date.getHours() - 12;
+    var month = date.getMonth()+1 < 10 ? '0' + (date.getMonth()+1) : date.getMonth()+1;
+    var day = date.getDate()+1 < 10 ? '0' + (date.getDate()+1) : date.getDate()+1;
+    return date ? `${month}/${day} &middot; ${hours}:${date.getMinutes()}`: '';
 }
 export default {
     asObject,
