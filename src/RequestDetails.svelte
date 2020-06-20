@@ -32,15 +32,19 @@
             <div>Contact: {request.properties.contact.phone}</div>
             <div>{@html utils.formatDate(new Date(request.properties.createDate)) }</div>
         </div><br>
+        {#if request.properties.category === "Art Requests"}
         <div class="instructions">
             <strong>How to serve in 6 steps</strong>
-            <div>Call the business to arrange logistics [1</div>
-            <div>Fill out This Form once you’re ready [2</div>
-            <div>Take a before photo [3</div>
-            <div>Do your thing [4</div>
-            <div>Take an after photo [5</div>
-            <div>Follow up on this webpage once you’re done [6</div>
+            <ol>
+                <li>Call the business to arrange logistics</li>
+                <li>Fill out This Form once you’re ready</li>
+                <li>Take a before photo</li>
+                <li>Do your thing</li>
+                <li>Take an after photo</li>
+                <li>Follow up on this webpage once you’re done</li>
+            </ol>
         </div>
+        {/if}
     </div>
 </div>
 {/if}
@@ -69,7 +73,28 @@
     }
 
     .instructions {
-        text-align: right;
         font-size: 0.75em;
+
+        ol {
+            list-style: none;
+            counter-reset: my-awesome-counter;
+            padding: 0;
+
+            li {
+                counter-increment: my-awesome-counter;
+                text-align: right;
+                position: relative;
+                padding: 2px 20px 2px 0;
+                
+            }
+            li::before {
+                content: '['counter(my-awesome-counter);
+                font-weight: bold;
+                position: absolute;
+                right: 0;
+                top: 3px;
+            }
+        }
     }
+
 </style>
