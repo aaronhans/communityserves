@@ -1,4 +1,4 @@
-name: Eleventy Build
+name: Github pages Build
 on: [push]
 
 jobs:
