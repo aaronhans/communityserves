@@ -18,7 +18,8 @@
     "dev": "rollup -c -w",
     "start": "sirv public",
     "api": "node api/local.js",
-    "deploy": "npm run build && node ./scripts/gh-pages.js"
+    "deploy": "npm run build && node ./scripts/gh-pages.js",
+    "deploy:debug": "NODE_DEBUG=gh-pages npm run deploy"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^12.0.0",
