@@ -13,7 +13,7 @@
 </script>
 
 {#if request}
-<div class="request-card">
+<div class="request-card" on:click={selectRequest}>
     {#if false && request.properties.imgURL}
         <div class="request-img"><img src="{request.properties.imgURL.split('id=') ? `https://drive.google.com/file/d/${request.properties.imgURL.split('id=')[1]}/preview` : request.properties.imgURL}" alt="Request Location"></div>
     {/if}
@@ -22,7 +22,7 @@
             <div class="request-name">{request.properties.businessName}</div>
         {/if}
         {#if formattedDate}<div class="create-date">{@html formattedDate}</div>{/if}
-        <a name="more-details" on:click={selectedRequest = request}>See Details</a>
+        <a name="more-details" on:click={selectRequest}>See Details</a>
     </div>
     <div class="request-cta">
         <button class="serve-cta primary-btn" on:click={selectRequest}>
