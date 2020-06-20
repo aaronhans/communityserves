@@ -39,14 +39,13 @@
 
 <svelte:window on:keydown={handle_keydown}/>
 
-<div class="modal-background" on:click={close}></div>
-
-<div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
-	<div class="modal-content">
-		<div on:click={close} class="close icon-close"></div>
-		<slot></slot>
+<div class="modal-background" on:click={close}>
+	<div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
+		<div class="modal-content">
+			<div on:click={close} class="close icon-close"></div>
+			<slot></slot>
+		</div>
 	</div>
-	<!-- svelte-ignore a11y-autofocus -->
 </div>
 
 <style>
@@ -56,22 +55,20 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: rgba(0,0,0,0.3);
-		z-index: 1;
+		background: rgba(0,0,0,0.5);
+		z-index: 2;
 	}
 
 	.modal {
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		/* width: 50%; */
-		max-width: 350px;
+		width: 300px;
 		max-height: calc(100vh - 4em);
 		overflow: auto;
 		transform: translate(-50%,-50%);
 		border-radius: 0.2em;
 		background: white;
-		z-index: 1;
 	}
 
 	.modal-content {
