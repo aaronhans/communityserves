@@ -28,7 +28,7 @@
 
             // create a HTML element for each feature
             var el = document.createElement('div');
-            el.className = 'art-request-marker';
+            el.className = 'art-complete-marker';
 
             // make a marker for each feature and add to the map
             new mapboxgl.Marker(el)
@@ -62,6 +62,14 @@
 
     :global(.art-request-marker) {
         background-image: url('../img/paint-brush-fill.svg');
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    :global(.art-complete-marker) {
+        background-image: url('../img/finishedmural.svg');
         background-size: cover;
         width: 50px;
         height: 50px;
