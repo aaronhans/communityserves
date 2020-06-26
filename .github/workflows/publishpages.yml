@@ -1,0 +1,16 @@
+name: Github pages Build
+on: [push]
+
+jobs:
+  build_deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@master
+      - run: npm install
+      - run: npm run build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v1.1.0
+        env:
+          PUBLISH_DIR: public 
+          PUBLISH_BRANCH: gh-pages
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

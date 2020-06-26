@@ -20,7 +20,7 @@
     }
 
     const getRequests = () => {
-        fetch('data/art-requests.json')
+        fetch('data/entered-data.json')
         .then(response => response.json())
         .then(geojson => {
             // add markers to map
@@ -28,13 +28,20 @@
 
             // create a HTML element for each feature
             var el = document.createElement('div');
-            el.className = 'art-request-marker';
+            el.className = 'art-complete-marker';
 
             // make a marker for each feature and add to the map
             new mapboxgl.Marker(el)
                 .setLngLat(marker.geometry.coordinates)
-                .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                .setHTML(`<h3>Art request</h3><p>${marker.properties.title}</p><p>${marker.properties.address}</p>`))
+                .setPopup(new mapboxgl.Popup({ offset: 25, maxWidth: 'none' }) // add popups
+                .setHTML(`<h3>Install</h3>
+                    <p><img src="${marker.properties.imgURL}" class="image-on-marker"></p>
+                    <p>${marker.properties.address}</p>
+                    ${(marker.properties.business) ? `<p>Business: ${marker.properties.business}</p>` : ''}
+                    ${(marker.properties.artist) ? `<p>Artist: ${marker.properties.artist}</p>` : ''}
+                    ${(marker.properties.insta) ? `<p>IG: ${marker.properties.insta}</p>` : ''}
+                    ${(marker.properties.help) ? `<p>With help from ${marker.properties.help}</p>` : ''}
+                `))
                 .addTo(map);
             });
 
@@ -61,5 +68,15 @@
         border-radius: 50%;
         cursor: pointer;
     }
-
+    :global(.art-complete-marker) {
+        background-image: url('../img/finishedmural.svg');
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    :global(.image-on-marker) {
+        max-width: 400px;
+    }
 </style>
