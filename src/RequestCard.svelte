@@ -22,7 +22,7 @@
             <div class="request-name">{request.properties.businessName}</div>
         {/if}
         {#if formattedDate}<div class="create-date">{@html formattedDate}</div>{/if}
-        <a name="more-details" on:click={selectRequest}>See Details</a>
+        <a name="more-details" on:click={selectRequest}>Tap to see more</a>
     </div>
     <div class="request-cta">
         <button class="serve-cta primary-btn" on:click={selectRequest}>
