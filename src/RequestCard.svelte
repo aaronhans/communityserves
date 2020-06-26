@@ -3,9 +3,10 @@
 
     export let request;
     export let selectedRequest;
+    let { imgURL, business, category} = request.properties;
     let formattedDate;
     if(request){
-      formattedDate = utils.formatDate(new Date(request.properties.createDate))
+      formattedDate = utils.formatDate(request.properties.createDate);
     }
     function selectRequest() {
       selectedRequest = request.id.replace(/ /g, "");
@@ -14,22 +15,25 @@
 
 {#if request}
 <div class="request-card" on:click={selectRequest}>
-    {#if false && request.properties.imgURL}
-        <div class="request-img"><img src="{request.properties.imgURL.split('id=') ? `https://drive.google.com/file/d/${request.properties.imgURL.split('id=')[1]}/preview` : request.properties.imgURL}" alt="Request Location"></div>
+    {#if imgURL && imgURL.indexOf('google')===-1}
+      <div class="request-img" style="background-image: url({imgURL})" alt="Request Location"></div>
     {/if}
     <div class="request-details">
-        {#if request.properties.businessName}
-            <div class="request-name">{request.properties.businessName}</div>
+        {#if business}
+            <div class="request-name">{business}</div>
         {/if}
-        {#if formattedDate}<div class="create-date">{@html formattedDate}</div>{/if}
+        {#if formattedDate}<div class="create-date">{@html formattedDate}</div>
+        {:else}<div class="create-date">June 2020</div>{/if}
         <a name="more-details" on:click={selectRequest}>Tap to see more</a>
     </div>
+    {#if category !== 'Art Install'}
     <div class="request-cta">
         <button class="serve-cta primary-btn" on:click={selectRequest}>
           Serve<br>
         <!-- <span class="sub"><span class="volunteer-count">None</span> have joined</span> -->
         </button>
     </div>
+    {/if}
 </div>
 {/if}
 
@@ -42,7 +46,8 @@
 }
 
 .request-img{
-  background: grey;
+  background-size: cover;
+  background-position: center;
   width: 50px;
 }
 

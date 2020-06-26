@@ -8,7 +8,13 @@ const asObject = function asObject(array, prop){
     }, {});
 }
 
+const formatRequests = function formatRequests(requests){
+    return asObject(requests, 'id');
+}
+
 const formatDate = function formatDate(date){
+    if (!date) return;
+    date = new Date(date);
     var hours = date.getHours() <= 12 ?  date.getHours() : date.getHours() - 12;
     var month = date.getMonth()+1 < 10 ? '0' + (date.getMonth()+1) : date.getMonth()+1;
     var day = date.getDate()+1 < 10 ? '0' + (date.getDate()+1) : date.getDate()+1;
@@ -16,5 +22,6 @@ const formatDate = function formatDate(date){
 }
 export default {
     asObject,
-    formatDate
+    formatDate,
+    formatRequests
 };

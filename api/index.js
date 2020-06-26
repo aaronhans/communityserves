@@ -164,7 +164,7 @@ module.exports = async function addToGithub(url, type) {
         }
 
         if(item["Business name (as listed on Google Maps)"]) {
-          feature.properties.businessName = item["Business name (as listed on Google Maps)"];
+          feature.properties.business = item["Business name (as listed on Google Maps)"];
         }
         if(item['latlon']) {
           feature.geometry.coordinates = [item.latlon]

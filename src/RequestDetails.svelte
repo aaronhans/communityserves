@@ -1,6 +1,7 @@
 <script>
     import utils from '../scripts/utils.js'
     export let request;
+    let { imgURL, address, category, business, artist, insta, contact, createDate } = request.properties;
     $: console.log(request);
 
     function unselectRequest() {
@@ -10,29 +11,51 @@
 
 {#if request}
 <div class="request-details">
-    <div class="imgs"></div>
+    <div class="imgs">
+        {#if imgURL}
+            <img src={imgURL} alt="Mural by {artist}"/>
+        {/if}
+    </div>
+    <div class="props">
+        {#if category === "Completed Install"}
+            {#if artist} Art &copy; {artist}, {createDate ? new Date(createDate).getFullYear() : 2020}{/if}
+        {/if}
+    </div>
     <div class="details">
         <div class="header">
             <a on:click={unselectRequest} name="back">&larr; Recent Requests</a>
+            {#if category !== "Completed Install"}
             <a class="serve-cta primary-btn" href="https://forms.gle/8PXQH6BJRzT5FAGy8">
                 Serve<br>
                 <!-- <span class="sub"><span class="volunteer-count">None</span> have joined</span> -->
             </a>
+            {/if}
         </div>
 
-        <h2>{request.properties.category}</h2>
+        <h2>{category}</h2>
         <div class="business-details">
             <div class="business-location"></div>
             <div class="business">
-                <div class="business-name"></div>
-                <a class="business-address" href="https://www.google.com/maps/place/{request.properties.address.replace(/ /g, '+')}" target="_blank">{request.properties.address}</a>
+                <div class="business-name">
+                {#if business}
+                    <div class="request-name">{business}</div>
+                {/if}</div>
+                <a class="business-address" href="https://www.google.com/maps/place/{address.replace(/ /g, '+')}" target="_blank">{address}</a>
             </div>
         </div>
         <div class="contact">
-            <div>Contact: {request.properties.contact.phone}</div>
-            <div>{@html utils.formatDate(new Date(request.properties.createDate)) }</div>
+            {#if contact.phone}
+            <div>Contact: {contact.phone}</div>
+            {/if}
+            <div>
+                {#if createDate}
+                {@html utils.formatDate(new Date(createDate)) }
+                {:else}
+                June 2020
+                {/if}
+            </div>
         </div><br>
-        {#if request.properties.category === "Art Requests"}
+        {#if category === "Art Requests"}
         <div class="instructions">
             <strong>How to serve in 6 steps</strong>
             <ol>
@@ -58,10 +81,22 @@
         bottom: 0;
         background: white;
         z-index: 2;
+        overflow: auto;
+
+        .imgs img {
+            max-width: 100%;
+        }
+    }
+
+    .props {
+        text-align: right;
+        padding: 1em;
+        padding-bottom: 0;
     }
 
     .details {
         padding: 1.5em;
+        padding-top: 0;
     }
 
     .header {

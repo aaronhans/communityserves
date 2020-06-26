@@ -6,10 +6,12 @@
     // import * as cleanupRequests from '../data/clean-up-requests.json'
     // import { features } from 'data/art-requests.json';
     import artReqestJSON from '../public/data/art-requests.json'
-    let artRequests = utils.asObject(artReqestJSON.features, 'id');    
+    import completedArtInstallsJSON from '../public/data/entered-data.json'
+    let artRequests = utils.formatRequests(artReqestJSON.features);   
+    let completedArtRequests = utils.formatRequests(completedArtInstallsJSON.features); 
     let selectedRequestID = null;
 
-    $: selectedRequest = artRequests[selectedRequestID];
+    $: selectedRequest = artRequests[selectedRequestID] || completedArtRequests[selectedRequestID];
 </script>
 
 <section>
@@ -33,6 +35,9 @@
                 {#each Object.keys(artRequests) as requestID}
                     <RequestCard request="{artRequests[requestID]}" bind:selectedRequest={selectedRequestID}/>
                 {/each} 
+                {#each Object.keys(completedArtRequests) as requestID}
+                    <RequestCard request="{completedArtRequests[requestID]}" bind:selectedRequest={selectedRequestID}/>
+                {/each}
             </div>
         </TabPanel>
     </Tabs>
