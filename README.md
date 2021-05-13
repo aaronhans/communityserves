@@ -1,3 +1,13 @@
+# Oakland closed businesses mural map
+
+This was built to document the community mural effort that was organized to create art on businesses that were closed early in the pandemic. These are authorized artworks placed at the business owner's request. Pictures and artist info was collected in a google form and fed into this repo to be placed on a map
+
+<img width="648" alt="Screen Shot 2021-05-12 at 4 57 14 PM" src="https://user-images.githubusercontent.com/353360/118058585-5c70a900-b343-11eb-808e-2721250ed47e.png">
+
+<img width="679" alt="Screen Shot 2021-05-12 at 4 57 00 PM" src="https://user-images.githubusercontent.com/353360/118058593-5f6b9980-b343-11eb-996c-c6d037f7f2d4.png">
+
+<img width="1033" alt="Screen Shot 2021-05-12 at 4 27 43 PM" src="https://user-images.githubusercontent.com/353360/118058375-f3893100-b342-11eb-8e36-d663c889d0ad.png">
+
 *Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
 ---
